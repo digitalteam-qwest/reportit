@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.CreateObservationPage"
+             Title="Submit Report">
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0,50">
+            <Label Text="Submit Report"
+                    FontSize="Large" HorizontalTextAlignment="Center"
+                    HorizontalOptions="FillAndExpand" />
+
+            <StackLayout VerticalOptions="Start">
+                <ActivityIndicator x:Name="activityIndicator" IsRunning="False" IsVisible="False"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
+            </StackLayout>
+
+            <ScrollView>
+                <Grid Padding="16,40,16,40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="90" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Report Type"
+                            VerticalOptions="Center"
+                            Grid.Row="0"
+                            Grid.Column="0" />
+                    
+                    <Frame HasShadow="False" BorderColor="Black" Padding="1, 1, 1, 1"
+                           Grid.Row="1"
+                           Grid.Column="0" >
+                    
+                        <ListView x:Name="ObservationTypesView"
+                                  GroupDisplayBinding="{Binding Title}"
+                                  IsGroupingEnabled="True" 
+                                  CachingStrategy="RecycleElementAndDataTemplate"
+                                  ItemSelected="OnObservationTypesViewItemSelected"
+                                  SelectedItem="{Binding ObservationTypeSelectedItem}" >
+
+                            <ListView.GroupHeaderTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="AliceBlue" >
+                                            <Button Image="{Binding StateIcon}"
+                                                    BackgroundColor="Transparent"
+                                                    BorderColor="Transparent"
+                                                    BorderWidth="0"
+                                                    Clicked="HeaderTapped"
+                                                    CommandParameter="{Binding .}" />
+                                            <Label Text="{Binding TitleWithItemCount}" 
+                                                TextColor="#005569"
+                                                FontSize="Small"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.GroupHeaderTemplate>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding Issue}" 
+                                                TextColor="{Binding TextColour}" BackgroundColor="White"
+                                                LineBreakMode="WordWrap" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+
+                    <Label VerticalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0" >                        
+                        
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="* " TextColor="Red" FontAttributes="Bold" />
+                                <Span Text="Description" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Frame HasShadow="False" BorderColor="Black" Padding="1, 1, 1, 1"
+                        Grid.Row="3"
+                        Grid.Column="0" >
+
+                        <Editor x:Name="Description"
+                                Placeholder="Provide a brief description here..." PlaceholderColor="Olive"
+                                BackgroundColor="AliceBlue" TextColor="Black"
+                                MaxLength="256"
+                                FontSize="Small"
+                                AutoSize="Disabled"
+                                HeightRequest="100" >
+
+                        </Editor>
+                    </Frame>
+                </Grid>
+            </ScrollView>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="10,0,10,10" >
+                <Button
+                    x:Name="buttonNext" Text="Next" IsEnabled="False"
+                    Padding="40, 0, 40, 0" CornerRadius="20" BorderWidth="4" TextColor="Black"
+                    Clicked="OnNext" >
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="#D11C5D" />
+                                    <Setter Property="TextColor" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="LightGray" />
+                                    <Setter Property="TextColor" Value="Gray" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Button
+                    x:Name="buttonCancel" Text="Cancel" IsEnabled="True"
+                    Padding="40, 0, 40, 0" CornerRadius="20" BorderWidth="4" TextColor="Black"
+                    Clicked="OnCancel" >
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="#D11C5D" />
+                                    <Setter Property="TextColor" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="LightGray" />
+                                    <Setter Property="TextColor" Value="Gray" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

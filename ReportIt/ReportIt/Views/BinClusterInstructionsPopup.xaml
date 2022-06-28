@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="ReportIt.Views.BinClusterInstructionsPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    HasSystemPadding="False">
+    <StackLayout Padding="20,20,20,20" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+        <StackLayout Padding="0,10,0,0" BackgroundColor="White">
+            <Grid Margin="20,0,0,5" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="Small" TextColor="Blue" Text="At a low Zoom level, groups of bins are represented as clusters."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Image Grid.Row="1" Grid.Column="2" Source="MapCluster.png" VerticalOptions="Center" HeightRequest="48" />
+
+                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="Small" TextColor="Blue" Text="Zoom In/Out (thumb and forefinger pinch or double-tap) to street level of map to select a bin icon."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Image Grid.Row="3" Grid.Column="2" Source="LitterBin.png" VerticalOptions="Center" HeightRequest="48" />
+
+                <Button Grid.Row="4" Grid.Column="1" Clicked="OnClose" Text="Close" TextColor="Black" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</rg:PopupPage>    

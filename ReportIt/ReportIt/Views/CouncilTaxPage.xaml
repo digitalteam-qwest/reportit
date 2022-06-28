@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.CouncilTaxPage"
+             Title="Council Tax Page" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#504d68</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="CWAC.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ReportChangeOfAddressButton" Grid.Column="0" Grid.Row="0"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Report a change of address"
+                        BackgroundColor="#314a91"
+                        TextColor="#FFFFFF"
+                        Clicked="ReportChangeOfAddressButton_OnClicked"
+                        BindingContext="{x:Reference Name=ReportChangeOfAddressButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="DiscountAndExemptionsButton" Grid.Column="1" Grid.Row="0"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="Discount and exemptions"
+                        BackgroundColor="#134f6d"
+                        TextColor="#FFFFFF"
+                        Clicked="DiscountAndExemptionsButton_OnClicked"
+                        BindingContext="{x:Reference Name=DiscountAndExemptionsButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="PayCouncilTaxButton" Grid.Column="0" Grid.Row="1"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Pay your council tax"
+                        BackgroundColor="#293163"
+                        TextColor="#FFFFFF"
+                        Clicked="PayCouncilTaxButton_OnClicked"
+                        BindingContext="{x:Reference Name=PayCouncilTaxButton}" HeightRequest="{Binding Width}" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

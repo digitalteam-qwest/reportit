@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.MapPage"
+             Title="Create Report">
+
+    <ContentPage.Content>
+        <StackLayout x:Name="stackMap" Spacing="0" >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="10,0,10,10" >
+
+                <Button x:Name="completeObservationButton" Text="Complete Report"
+                        Padding="40, 0, 40, 0" CornerRadius="20" BorderWidth="4"
+                        BorderColor="#D11C5D" TextColor="Black" IsEnabled="False"
+                        Clicked="CompleteObservationButton_OnClicked" >
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="#D11C5D" />
+                                    <Setter Property="TextColor" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="LightGray" />
+                                    <Setter Property="TextColor" Value="Gray" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Button x:Name="buttonBack" Text="Back" IsEnabled="True"
+                        Padding="40, 0, 40, 0" CornerRadius="20" BorderWidth="4"
+                        BorderColor="#D11C5D" TextColor="Black"
+                        Clicked="OnBack" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

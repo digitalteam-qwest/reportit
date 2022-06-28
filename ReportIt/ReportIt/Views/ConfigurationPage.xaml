@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="ReportIt.Views.ConfigurationPage"
+             Title="My Account Settings" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#504d68</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" >
+            <Grid Padding="6,40,6,0"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Select map type"
+                        VerticalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="0" />
+                <Picker x:Name="pickerMapType"
+                        BackgroundColor="AliceBlue" TextColor="Black"
+                        SelectedIndexChanged="PickerMapType_SelectedIndexChanged"
+                        VerticalOptions="Center"
+                        Title="Select a map type"
+                        Grid.Row="0"
+                        Grid.Column="1" >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Normal Roadmap</x:String>
+                            <x:String>Satellite</x:String>
+                            <x:String>Hybrid</x:String>
+                            <x:String>Terrain</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+
+            <Grid Padding="6,0,6,40"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Email"
+                        VerticalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="0" />
+                <Entry x:Name="emailAddress"
+                        Placeholder="Email address..." PlaceholderColor="Olive"
+                        BackgroundColor="AliceBlue" TextColor="Black"
+                        MaxLength="60" WidthRequest="300" 
+                        VerticalOptions="Center" HorizontalOptions="Start"
+                        IsSpellCheckEnabled="False"
+                        Completed="EmailAddress_OnCompleted"
+                        Grid.Row="0"
+                        Grid.Column="1" />
+
+                <Button x:Name="emailAddressButton" Grid.Row="0" Grid.Column="2"
+                        Text="Update"
+                        Margin="0,0,0,0" CornerRadius="20"
+                        BorderWidth="4" BorderColor="#D11C5D" TextColor="Black"
+                        Clicked="EmailAddressButton_OnClicked" >
+                </Button>
+
+                <Label Text="Telephone number"
+                        VerticalOptions="Center"
+                        Grid.Row="1"
+                        Grid.Column="0" />
+
+                <Entry x:Name="telephoneNo"
+                        Placeholder="Telephone number..." PlaceholderColor="Olive"
+                        BackgroundColor="AliceBlue" TextColor="Black"
+                        MaxLength="30" WidthRequest="300" 
+                        VerticalOptions="Center" HorizontalOptions="Start"
+                        IsSpellCheckEnabled="False"
+                        Completed="TelephoneNo_OnCompleted"
+                        Grid.Row="1"
+                        Grid.Column="1" />
+            </Grid>
+
+            <Grid Padding="6,0,6,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Row="0" Grid.Column="0"
+                       HasShadow="False" Margin="2, 2, 2, 2" Padding="1, 1, 1, 1" >
+                    
+                    <Label HorizontalTextAlignment="Center" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnNotificationsTapped" />
+                        </Label.GestureRecognizers>
+
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="Small" Text="You will be asked to provide your email address in order to fulfil your request." />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+
+                                <Span FontSize="Small" Text="The information you provide will be held securely in accordance with the " />
+                                <Span x:Name="GDPRRLink" FontSize="Small" Text="General Data Protection Regulation." TextColor="Blue" >
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnGDPRRLinkTapped" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+
+                                <Span FontSize="Small" Text="The data we are collecting is necessary to provide this service." />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+
+                                <Span FontSize="Small" Text="Your information will be processed by our Customer Service and digital service provider, Qwest Services Limited. Where required, Qwest will pass on your data to the relevant Council department to be actioned." />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+                                <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+
+                                <Span FontSize="Small" Text="Further information can be found in our " />
+                                <Span x:Name="PrivacyNoticeLink" FontSize="Small" Text="Privacy notice." TextColor="Blue" >
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPrivacyNoticeLinkTapped" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

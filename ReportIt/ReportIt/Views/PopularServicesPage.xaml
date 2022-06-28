@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.PopularServicesPage"
+             Title="Popular Services Page" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#504d68</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="CWAC.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="OneNetworkButton" Grid.Column="0" Grid.Row="2"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Current roadworks"
+                        BackgroundColor="#087887"
+                        TextColor="#FFFFFF"
+                        Clicked="OneNetworkButton_OnClicked"
+                        BindingContext="{x:Reference Name=OneNetworkButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="AdoptedRoadsGazetteerButton" Grid.Column="1" Grid.Row="2"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="Adopted roads listing"
+                        BackgroundColor="#5B6176"
+                        TextColor="#FFFFFF"
+                        Clicked="AdoptedRoadsGazetteerButton_OnClicked"
+                        BindingContext="{x:Reference Name=AdoptedRoadsGazetteerButton}" HeightRequest="{Binding Width}" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ReportIt": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "nativeDebugging": true
+    }
+  }
+}

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:views="clr-namespace:ReportIt.Views"
+            x:Class="ReportIt.Views.MainPage" >
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="Primary">#504d68</Color>
+      <Color x:Key="Accent">#96d1ff</Color>
+      <Color x:Key="LightTextColor">#999999</Color>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid>
+      <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="CWAC.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BeginReportItPageButton" Grid.Column="0" Grid.Row="0"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Report it"
+                        BackgroundColor="#D83A09"
+                        TextColor="#FFFFFF"
+                        Clicked="BeginReportItPageButton_OnClicked" 
+                        BindingContext="{x:Reference Name=BeginReportItPageButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ShowReportsPageButton" Grid.Column="1" Grid.Row="0"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="Report it log"
+                        BackgroundColor="#434D68"
+                        TextColor="#FFFFFF"
+                        Clicked="ShowReportsPageButton_OnClicked"
+                        BindingContext="{x:Reference Name=ShowReportsPageButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ShowCouncilTaxPageButton" Grid.Column="0" Grid.Row="1"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Council Tax"
+                        BackgroundColor="#346999"
+                        TextColor="#FFFFFF"
+                        Clicked="ShowCouncilTaxPageButton_OnClicked" 
+                        BindingContext="{x:Reference Name=ShowCouncilTaxPageButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ShowPopularServicesPageButton" Grid.Column="1" Grid.Row="1"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="Useful information"
+                        BackgroundColor="#D11C5D"
+                        TextColor="#FFFFFF"
+                        Clicked="ShowPopularServicesPageButton_OnClicked"
+                        BindingContext="{x:Reference Name=ShowPopularServicesPageButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ShowWastePageButton" Grid.Column="0" Grid.Row="2"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Waste"
+                        BackgroundColor="#3D136D"
+                        TextColor="#FFFFFF"
+                        Clicked="ShowWastePageButton_OnClicked"
+                        BindingContext="{x:Reference Name=ShowWastePageButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ShowConfigurationPageButton" Grid.Column="1" Grid.Row="2"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="My account settings"
+                        BackgroundColor="#1C2D8E"
+                        TextColor="#FFFFFF"
+                        Clicked="ShowConfigurationPageButton_OnClicked"
+                        BindingContext="{x:Reference Name=ShowConfigurationPageButton}" HeightRequest="{Binding Width}" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

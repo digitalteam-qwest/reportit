@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.WastePage"
+             Title="Waste Page" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#504d68</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="CWAC.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="OrderOrRemoveABinButton" Grid.Column="0" Grid.Row="0"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Order or remove a bin"
+                        BackgroundColor="#5f2a96"
+                        TextColor="#FFFFFF"
+                        Clicked="OrderOrRemoveABinButton_OnClicked"
+                        BindingContext="{x:Reference Name=OrderOrRemoveABinButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="RequestABulkyItemCollectionButton" Grid.Column="1" Grid.Row="0"
+                        Margin="10,0,10,10" CornerRadius="20"
+                        FontSize="Large" Text="Request a bulky item collection"
+                        BackgroundColor="#0474b2"
+                        TextColor="#FFFFFF"
+                        Clicked="RequestABulkyItemCollectionButton_OnClicked"
+                        BindingContext="{x:Reference Name=RequestABulkyItemCollectionButton}" HeightRequest="{Binding Width}" />
+
+                <Button x:Name="ReportAMissedBinCollectionButton" Grid.Column="0" Grid.Row="1"
+                        Margin="10,0,0,10" CornerRadius="20"
+                        FontSize="Large" Text="Report a missed bin collection"
+                        BackgroundColor="#9e22bc"
+                        TextColor="#FFFFFF"
+                        Clicked="ReportAMissedBinCollectionButton_OnClicked"
+                        BindingContext="{x:Reference Name=ReportAMissedBinCollectionButton}" HeightRequest="{Binding Width}" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,155 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <AssemblyName>ReportIt</AssemblyName>
+    <Configurations>Debug;Release;ReportIt.iOS64</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants />
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReportIt.iOS64|AnyCPU'">
+    <DefineConstants />
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Images Backup\**" />
+    <Compile Remove="Shapefile Test\**" />
+    <EmbeddedResource Remove="Images Backup\**" />
+    <EmbeddedResource Remove="Shapefile Test\**" />
+    <None Remove="Images Backup\**" />
+    <None Remove="Shapefile Test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\RangerSites.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".~lock.StreetlightsGPS.csv#" />
+    <None Remove="Bins.csv" />
+    <None Remove="Cluster.png" />
+    <None Remove="Current Street Lighting Data.xlsx" />
+    <None Remove="CWAC.png" />
+    <None Remove="cwacboundary.json" />
+    <None Remove="dog-bin-selected.png" />
+    <None Remove="dog-bin-unselected.png" />
+    <None Remove="lamp-off.png" />
+    <None Remove="lamp-on.png" />
+    <None Remove="LegacyMapMarker.png" />
+    <None Remove="litter-bin-selected.png" />
+    <None Remove="litter-bin-unselected.png" />
+    <None Remove="MapCluster - Copy.png" />
+    <None Remove="MapCluster.png" />
+    <None Remove="MapCluster10+.png" />
+    <None Remove="MapCluster10.png" />
+    <None Remove="MapCluster100+.png" />
+    <None Remove="MapCluster1000+.png" />
+    <None Remove="MapCluster2.png" />
+    <None Remove="MapCluster25+.png" />
+    <None Remove="MapCluster250+.png" />
+    <None Remove="MapCluster3.png" />
+    <None Remove="MapCluster4.png" />
+    <None Remove="MapCluster5.png" />
+    <None Remove="MapCluster50+.png" />
+    <None Remove="MapCluster500+.png" />
+    <None Remove="MapCluster6.png" />
+    <None Remove="MapCluster7.png" />
+    <None Remove="MapCluster8.png" />
+    <None Remove="MapCluster9.png" />
+    <None Remove="MapClusterBlue.png" />
+    <None Remove="MapMarker.png" />
+    <None Remove="MapMarker_Original.png" />
+    <None Remove="Point.png" />
+    <None Remove="RangerSiteLocations.geojson" />
+    <None Remove="SL Current Street Lighting Data for Report IT App.txt" />
+    <None Remove="Streetlights.csv" />
+    <None Remove="Streetlights.xlsx" />
+    <None Remove="StreetlightsConv.py" />
+    <None Remove="StreetlightsGPS - Copy.csv" />
+    <None Remove="StreetlightsGPS - Save.csv" />
+    <None Remove="StreetlightsGPS.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="cwacboundary.json" />
+    <EmbeddedResource Include="dog-bin-selected.png" />
+    <EmbeddedResource Include="dog-bin-unselected.png" />
+    <EmbeddedResource Include="lamp-off.png" />
+    <EmbeddedResource Include="lamp-on.png" />
+    <EmbeddedResource Include="LegacyMapMarker.png" />
+    <EmbeddedResource Include="litter-bin-selected.png" />
+    <EmbeddedResource Include="litter-bin-unselected.png" />
+    <EmbeddedResource Include="MapCluster10+.png" />
+    <EmbeddedResource Include="MapCluster10.png" />
+    <EmbeddedResource Include="MapCluster100+.png" />
+    <EmbeddedResource Include="MapCluster1000+.png" />
+    <EmbeddedResource Include="MapCluster2.png" />
+    <EmbeddedResource Include="MapCluster25+.png" />
+    <EmbeddedResource Include="MapCluster250+.png" />
+    <EmbeddedResource Include="MapCluster3.png" />
+    <EmbeddedResource Include="MapCluster4.png" />
+    <EmbeddedResource Include="MapCluster5.png" />
+    <EmbeddedResource Include="MapCluster50+.png" />
+    <EmbeddedResource Include="MapCluster500+.png" />
+    <EmbeddedResource Include="MapCluster6.png" />
+    <EmbeddedResource Include="MapCluster7.png" />
+    <EmbeddedResource Include="MapCluster8.png" />
+    <EmbeddedResource Include="MapCluster9.png" />
+    <EmbeddedResource Include="MapMarker.png" />
+    <EmbeddedResource Include="Point.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.7.7" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.7.21" />
+    <PackageReference Include="ContextViewCell" Version="2.0.3" />
+    <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="GeoUK" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.11.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />  
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Cluster.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ClusterInstructionsPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ConfigurationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MapPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

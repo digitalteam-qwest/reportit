@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ReportIt.ViewModels;assembly=ReportIt"
+             x:Class="ReportIt.Views.ReportsMapPage"
+             Title="Show Reports on Map">
+
+    <ContentPage.Content>
+        <StackLayout x:Name="stackReportsMap" Spacing="0">
+            <Button x:Name="closeButton" Text="Close"
+                    Margin="0,10,0,0" CornerRadius="20"
+                    BorderWidth="4" BorderColor="#D11C5D" TextColor="Black"
+                    Clicked="CloseButton_OnClicked" />            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

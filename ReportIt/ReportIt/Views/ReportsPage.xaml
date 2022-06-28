@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:conv="clr-namespace:ReportIt.Converters"
+             xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="ReportIt.Views.ReportsPage"
+             Title="My Reports">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#504d68</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>            
+
+            <x:String x:Key="formatdatetimelong">ddMMMyy HH:mm:ss</x:String>
+
+            <conv:MenuFitWidthConverter x:Key="MenuFitWidthConverter" />
+            <conv:AlternatingHighlightColorConverter x:Key="AlternatingHighlightColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="stackReports" Spacing="0">
+            <Label HorizontalTextAlignment="Center" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontSize="Small" Text="Swipe any individual report entry from the right to delete." />
+                        <Span FontSize="Small" Text="{x:Static system:Environment.NewLine}" />
+                        <Span FontSize="Small" Text="Please note that this action will only delete the report from your view, it does not inform Cheshire West and Chester to disregard the report." />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <CollectionView x:Name="LegacyObservationsView"
+                Margin="0, 5, 0, 0" VerticalOptions="FillAndExpand"
+                BackgroundColor="White" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <context:SideContextMenuView IsAutoCloseEnabled="true">
+                            <context:SideContextMenuView.View>
+
+                                <Frame BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference LegacyObservationsView}}" 
+                                       HasShadow="False"
+                                       Margin="15,5"
+                                       Padding="20"
+                                       WidthRequest="{Binding Source={x:Reference LegacyObservationsView}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='70'}"
+                                       CornerRadius="10">
+
+                                    <StackLayout Orientation="Vertical">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="1*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="{Binding legacyObservation.photoSource}"
+                                                       Aspect="AspectFit" HeightRequest="100" WidthRequest="100" />
+
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding legacyObservation.timestamp, StringFormat='{0:dd/MM/yyyy HH:mm:ss}'}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start" />
+                                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding legacyObservation.caseId}" TextColor="White" FontSize="Small" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding legacyObservation.location}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start"/>
+
+                                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding legacyObservation.type}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start"/>
+                                            <Label Grid.Row="2" Grid.Column="2" Text="{Binding legacyObservation.issue}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start" />
+
+                                            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding legacyObservation.description}" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start"
+                                                LineBreakMode="{Binding lineBreakMode}" MaxLines="{Binding maxLines}">
+
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnDescriptionTextTapped" CommandParameter="{Binding .}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
+                                            <Button Grid.Row="4" Grid.Column="1" Text="Check Status"
+                                                BackgroundColor="{StaticResource Primary}" TextColor="White"
+                                                Clicked="CheckReportStatusButton_OnClicked" CommandParameter="{Binding legacyObservation.checkStatusURL}"
+                                            />
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </context:SideContextMenuView.View>
+
+                            <context:SideContextMenuView.ContextTemplate>
+                                <DataTemplate>
+                                    <StackLayout  
+                                        Padding="0, 5, 10, 5"
+                                        Orientation="Horizontal"
+                                        Spacing="10" >
+
+                                        <Button Text="Delete" Padding="10, 0" CornerRadius="10" Clicked="OnDelete" CommandParameter="{Binding .}" BackgroundColor="#FF0000" TextColor="#FFFFFF" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </context:SideContextMenuView.ContextTemplate>
+                        </context:SideContextMenuView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button x:Name="showReportsOnMapButton" Text="Show Reports on Map"
+                    VerticalOptions="EndAndExpand"
+                    Margin="0,10,0,0" CornerRadius="20"
+                    BorderWidth="4" BorderColor="#D11C5D" TextColor="Black"
+                    Clicked="ShowReportsOnMapButton_OnClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
